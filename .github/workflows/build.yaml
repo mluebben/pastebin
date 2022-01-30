@@ -14,8 +14,6 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '14'
-        cache: 'npm'
-        cache-dependency-path: src/Pastebin.UI/client-app/package-lock.json
     - name: Setup dotnet
       uses: actions/setup-dotnet@v1
       with:
@@ -32,4 +30,4 @@ jobs:
         NAME: production
         PORT: ${{ secrets.SSH_PORT }}
         USER: ${{ secrets.SSH_USER }}
-    - run: ssh production ls --help
+    - run: cat release.zip | ssh production /root/deploy -c pastebin -i -

@@ -1,8 +1,3 @@
-drop procedure CreatePaste;
-drop procedure GetPasteById;
-
-
-
 delimiter //
 
 CREATE PROCEDURE CreatePaste(_uid VARCHAR(50), title VARCHAR(250), language VARCHAR(50), code VARCHAR(4000), expirationDate DATETIME)
@@ -14,10 +9,6 @@ BEGIN
 END//
 
 delimiter ;
-
-CALL create_paste('foo-bar1', 'mein-titel', 'mein-code');
-
-
 
 
 
@@ -40,3 +31,4 @@ BEGIN
 END//
 
 delimiter ;
+

@@ -10,24 +10,29 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup node
+      uses: actions/setup-node@v1
       with:
         node-version: '14'
     - name: Setup dotnet
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '6.0.x'
-    - run: dotnet publish --configuration release --output publish --runtime linux-x64 --self-contained
-    - uses: montudor/action-zip@v1
+    - name: Build application
+      run: dotnet publish --configuration release --output publish --runtime linux-x64 --self-contained
+    - name: Bundle application
+      uses: montudor/action-zip@v1
       with:
         args: zip -qq -r release.zip publish
-    - run: ls -l release.zip
-    - uses: LuisEnMarroquin/setup-ssh-action@v2.0.0
+    - name: Setup ssh
+      uses: LuisEnMarroquin/setup-ssh-action@v2.0.0
       with:
         ORIGIN: ${{ secrets.SSH_HOST }}
         SSHKEY: ${{ secrets.SSH_KEY }}
         NAME: production
         PORT: ${{ secrets.SSH_PORT }}
         USER: ${{ secrets.SSH_USER }}
-    - run: cat release.zip | ssh production /root/deploy -c pastebin -i -
+    - name: Deploy application
+      run: cat release.zip | ssh production /root/deploy -c pastebin -i -

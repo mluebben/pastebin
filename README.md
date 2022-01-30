@@ -41,4 +41,27 @@ Build
 
    npm run build
    dotnet publish --configuration release --output publish --runtime linux-x64 --self-contained
+   
+
+
+/etc/systemd/system/pastebin.service
+
+```
+[Unit]
+Description=Pastebin web application
+
+[Service]
+Type=simple
+ExecStart=/srv/www/pastebin.matthias-luebben.de/app/bin/Pastebin.UI
+WorkingDirectory=/srv/www/pastebin.matthias-luebben.de/app/bin
+User=www-data
+Group=www-data
+
+[Install]
+WantedBy=multi-user.target
+```
+
+
+systemctl enable pastebin.service
+
 

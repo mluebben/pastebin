@@ -21,3 +21,15 @@ jobs:
       with:
         dotnet-version: '6.0.x'
     - run: dotnet publish --configuration release --output publish --runtime linux-x64 --self-contained
+    - uses: montudor/action-zip@v1
+      with:
+        args: zip -qq -r release.zip publish
+    - run: ls -l release.zip
+    - uses: LuisEnMarroquin/setup-ssh-action@v2.0.0
+      with:
+        ORIGIN: ${{ secrets.SSH_HOST }}
+        SSHKEY: ${{ secrets.SSH_KEY }}
+        NAME: production
+        PORT: ${{ secrets.SSH_PORT }}
+        USER: ${{ secrets.SSH_USER }}
+    - run: ssh production ls --help

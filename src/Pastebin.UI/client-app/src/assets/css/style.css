@@ -1,0 +1,120 @@
+﻿/*
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+// Copyright 2022 Matthias Lübben <ml81@gmx.de>
+//
+*/
+
+/* Aussehen für die Anwendung. */
+
+body {
+    overflow-y: scroll;
+}
+
+
+/*-------------------------------------------------------------------------------------------------------------*/
+/* Loader */
+
+@keyframes loading-animation {
+    from {
+        background-color: #fafafa;
+    }
+
+    to {
+        background-color: #dadada;
+    }
+}
+
+.loading {
+    animation-name: loading-animation;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    -webkit-filter: blur(1px);
+    -moz-filter: blur(1px);
+    -o-filter: blur(1px);
+    -ms-filter: blur(1px);
+    filter: blur(1px);
+}
+
+
+/*-------------------------------------------------------------------------------------------------------------*/
+/* Tabellen */
+
+.efk-table thead {
+    background-color: #5D7B9D;
+    color: #FFFFFF;
+}
+
+.efk-table td,
+.efk-table th {
+    padding-left: 0.4em;
+    padding-right: 0.4em;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+}
+
+.efk-table thead th:first-child {
+    border-left: inherit;
+}
+
+.efk-table thead th {
+    border-left: 1px solid #6282a6;
+}
+
+.efk-table tbody tr:nth-child(2n+1) {
+    background-color: #E7E7E7;
+}
+
+.efk-table tbody td:nth-child(1) {
+    border-left: inherit;
+}
+
+.efk-table tbody td {
+    border-left: 1px solid #E0E0E0;
+}
+
+.efk-table-btn {
+    margin-right: 2px;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+}
+
+.efk-table-btn img {
+    width: 16px;
+    height: 16px;
+}
+
+.efk-table-btn:disabled {
+    opacity: 0.3;
+}
+
+
+
+
+
+
+
+
+.is-invalid ~ .invalid-feedback,
+.is-invalid ~ .invalid-tooltip {
+    display: none;
+}
+
+.is-invalid:hover ~ .invalid-feedback,
+.is-invalid:hover ~ .invalid-tooltip {
+    display: block;
+}
+
+.form-control.is-invalid,
+.form-control.is-valid {
+    background-image: none;
+    padding-right: inherit;
+}
+
+.custom-select.is-invalid,
+.custom-select.is-valid {
+    background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/8px 10px;
+}

@@ -1,0 +1,18 @@
+# Temporary build artifacts
+obj/
+bin/
+
+# Temporary test artifacts
+TestResults/
+
+# NuGet distributed packages
+packages/
+
+# Development files
+appsettings.Development.json
+
+# Editor directories and files
+.vscode
+.vs
+*.suo
+*.user

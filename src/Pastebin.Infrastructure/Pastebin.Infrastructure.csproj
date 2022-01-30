@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="8.0.28" />
+    <PackageReference Include="System.Data.Common" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Luebben.Data.Extensions.Microsoft.DependencyInjection\Luebben.Data.Extensions.Microsoft.DependencyInjection.csproj" />
+    <ProjectReference Include="..\Luebben.Data\Luebben.Data.csproj" />
+    <ProjectReference Include="..\Pastebin.Application\Pastebin.Application.csproj" />
+    <ProjectReference Include="..\Pastebin.Domain\Pastebin.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

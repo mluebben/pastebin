@@ -25,17 +25,14 @@ namespace Pastebin.UI.Vite
         /// </summary>
         /// <param name="spa"></param>
         /// <exception cref="DevelopmentServerNotRunningException">When development server is not running.</exception>
-        public static void UseVueDevelopmentServer(this ISpaBuilder spa)
+        public static void UseViteDevelopmentServer(this ISpaBuilder spa)
         {
-            spa.UseProxyToSpaDevelopmentServer(async () =>
+            if (!IsRunning())
             {
-                if (!IsRunning())
-                {
-                    throw new DevelopmentServerNotRunningException($"Node development server is not running on port: {Port}. Please run 'npm run dev'.");
-                } 
-                
-                return DevelopmentServerEndpoint;
-            });
+                throw new DevelopmentServerNotRunningException($"Node development server is not running on port: {Port}. Please run 'npm run dev'.");
+            }
+
+            spa.UseProxyToSpaDevelopmentServer(DevelopmentServerEndpoint);
         }
 
         /// <summary>

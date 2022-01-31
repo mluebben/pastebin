@@ -44,6 +44,14 @@ namespace Luebben.Data.Extensions.Microsoft.DependencyInjection
 
         public DatabaseOptions Build()
         {
+            if (ProviderFactory == null)
+            {
+                throw new InvalidOperationException($"Property {nameof(ProviderFactory)} must have a value.");
+            }
+            if (ConnectionString == null)
+            {
+                throw new InvalidOperationException($"Property {nameof(ConnectionString)} must have a value.");
+            }
             return new DatabaseOptions(ProviderFactory, ConnectionString);
         }
     }

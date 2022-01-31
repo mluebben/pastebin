@@ -9,6 +9,6 @@ namespace Luebben.Data.Mapper.Types
 {
     public interface ITypeMapper
     {
-        object Map(object value, Type targetType);
+        object? Map(object? value, Type targetType);
     }
 }

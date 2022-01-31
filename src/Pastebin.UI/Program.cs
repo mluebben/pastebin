@@ -52,7 +52,7 @@ app.UseSpa(spa =>
     if (app.Environment.IsDevelopment())
     {
         // Launch development server for Vue.js
-        spa.UseVueDevelopmentServer();
+        spa.UseViteDevelopmentServer();
     }
 });
 

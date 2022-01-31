@@ -41,6 +41,6 @@ namespace Luebben.Data
 
         public int Scale { get; set; }
 
-        public object Value { get; set; }
+        public object? Value { get; set; }
     }
 }

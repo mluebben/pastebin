@@ -67,7 +67,7 @@ namespace Luebben.Data
                 await connection.OpenAsync();
                 using (var command = CreateCommand(connection, sql, parameters))
                 {
-                    DbDataReader reader = null;
+                    DbDataReader? reader = null;
                     try
                     {
                         reader = await command.ExecuteReaderAsync(commandBehaviour);
@@ -87,7 +87,7 @@ namespace Luebben.Data
             return result;
         }
 
-        public async Task<T> QueryScalarAsync<T>(string sql, params Parameter[] parameters)
+        public async Task<T?> QueryScalarAsync<T>(string sql, params Parameter[] parameters)
         {
             using (var connection = CreateConnection())
             {
@@ -96,7 +96,7 @@ namespace Luebben.Data
                 {
                     var scalar = await command.ExecuteScalarAsync();
 
-                    return (T)_typeMapper.Map(scalar, typeof(T));
+                    return (T?)_typeMapper.Map(scalar, typeof(T));
                 }
             }
         }
@@ -104,13 +104,17 @@ namespace Luebben.Data
         protected virtual DbConnection CreateConnection()
         {
             var connection = _options.ProviderFactory.CreateConnection();
+            if (connection == null)
+            {
+                throw new DataException($"Unable to create DbConnection object with provider factory {_options.ProviderFactory.GetType().Name}.");
+            }
             connection.ConnectionString = _options.ConnectionString;
             return connection;
         }
 
         protected virtual DbCommand CreateCommand(DbConnection connection, string sql, Parameter[] parameters)
         {
-            DbCommand command = null;
+            DbCommand? command = null;
             try
             {
                 command = connection.CreateCommand();
@@ -176,7 +180,7 @@ namespace Luebben.Data
             return new FieldMapper(fieldNames);
         }
 
-        private void EnsureReaderIsClosed(DbDataReader reader)
+        private void EnsureReaderIsClosed(DbDataReader? reader)
         {
             try
             {
@@ -191,7 +195,7 @@ namespace Luebben.Data
             }
         }
 
-        private void EnsureIsDisposed(IDisposable disposable)
+        private void EnsureIsDisposed(IDisposable? disposable)
         {
             try
             {

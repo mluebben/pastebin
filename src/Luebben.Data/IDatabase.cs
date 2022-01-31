@@ -14,7 +14,7 @@ namespace Luebben.Data
 
         Task<T> QueryFirstAsync<T>(string sql, params Parameter[] parameters) where T : new();
 
-        Task<T> QueryScalarAsync<T>(string sql, params Parameter[] parameters);
+        Task<T?> QueryScalarAsync<T>(string sql, params Parameter[] parameters);
 
         Task<int> ExecuteSqlCommandAsync(string sql, params Parameter[] parameters);
     }

@@ -5,9 +5,15 @@
 //
 -->
 
-<script setup>
+<script lang="ts">
+export default {
+  inheritAttrs: false
+}
+</script>
+
+<script setup lang="ts">
 import { ref, computed, useAttrs } from 'vue';
-import Icon from '@/components/controls/Icon.vue'
+import Icon from '../../components/controls/Icon.vue'
 
 const props = defineProps({
     disabled: {
@@ -17,6 +23,18 @@ const props = defineProps({
 })
 
 const attrs = useAttrs()
+
+const omitEvents = (events: object, toOmit: string[]) => {
+  const newEvents: object = {};
+
+  Object.keys(events).forEach((eventName) => {
+    if (toOmit.indexOf(String(eventName)) === -1) {
+      newEvents[eventName] = events[eventName];
+    }
+  });
+
+  return newEvents;
+};
 
 const button = ref(null)
 const isWorking = ref(false)
@@ -34,7 +52,7 @@ function click() {
     button.value.click()
 }
 
-function onClick(event) {
+function onClick(event: MouseEvent) {
     return new Promise((resolve, reject) => {
         isWorking.value = true
         emitClick(event)
@@ -49,8 +67,8 @@ function onClick(event) {
     })
 }
 
-function emitClick(event) {
-    const clickListener = attrs.onClick
+function emitClick(event: MouseEvent) {
+    const clickListener: any = attrs.onClick
     if (!clickListener) {
         Promise.resolve(false)  // No listener defined
     }
@@ -65,7 +83,7 @@ function emitClick(event) {
 </script>
 
 <template>
-    <button class="btn" :class="{ disabled: isDisabled }" type="button" @click="onClick" ref="button">
+    <button class="btn" :class="{ disabled: isDisabled }" type="button" @click="onClick" v-bind="omitEvents($attrs, ['onClick'])" ref="button">
         <Icon v-if="isWorking">
             <div class="loader"></div>
         </Icon>

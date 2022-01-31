@@ -6,7 +6,6 @@
 -->
 
 <script setup>
-
 // Import Prism Editor	
 import { PrismEditor } from 'vue-prism-editor'
 import 'vue-prism-editor/dist/prismeditor.min.css' // import the styles somewhere
@@ -16,18 +15,13 @@ import { ref } from 'vue'
 
 import PasteBinApi from '@/api/pastebinapi'
 
-
 import router from '@/router'
 
 import Button from '@/components/controls/Button.vue'
 import TextField from '@/components/controls/TextField.vue'
 import SelectField from '@/components/controls/SelectField.vue'
 
-
-
 const title = ref('')
-
-
 const language = ref('clike')
 const retention = ref('0')
 const code = ref('')
@@ -44,21 +38,9 @@ const submit = async function() {
     code: code.value,
   })
 
-  console.log("result: ", result)
-
   const id = result.id
-
-
   router.push({ name: 'view', params: { id: id } })
-
-
-  //return new Promise(resolve => {
-  //  setTimeout(() => { console.log('calling resolve'); resolve(true) }, 6000)
-  //})
-
 }
-
-
 
 const languageItems = ref(languages)
 const retentionItems = ref([
@@ -67,11 +49,9 @@ const retentionItems = ref([
   { value: "30", label: "30 days" },
   { value: "360", label: "360 days" }
 ])
-
 </script>
 
 <template>
-  
 <div class="container">
   <div class="row">
     <div class="col">
@@ -93,11 +73,10 @@ const retentionItems = ref([
   </div>
   <div class="row">
     <div class="col">
-      <Button class="btn-primary" @click="submit()">Submit</button>
+      <Button class="btn-primary" @click="submit">Submit</button>
     </div>
   </div>
 </div>
-
 </template>
 
 <style scoped>

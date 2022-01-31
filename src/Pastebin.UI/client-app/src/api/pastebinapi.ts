@@ -24,11 +24,7 @@ async function post({ title, retention, language, code }: CreatePasteRequest): P
         code
     })
 
-    console.log('response: ', response)
-
     const result = response.data
-    console.log('post result data: ', result)
-
     return result
 }
 

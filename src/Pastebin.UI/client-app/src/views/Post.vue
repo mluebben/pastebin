@@ -67,8 +67,11 @@ const retentionItems = ref([
     </div>
   </div>
   <div class="row">
+    <label>Code</label>
+  </div>
+  <div class="row">
     <div class="col">
-      <prism-editor class="my-editor" v-model="code" :highlight="highlighter" line-numbers></prism-editor>
+      <prism-editor class="my-editor form-control" v-model="code" :highlight="highlighter" line-numbers placeholder="Paste content here ..."></prism-editor>
     </div>
   </div>
   <div class="row">
@@ -80,5 +83,9 @@ const retentionItems = ref([
 </template>
 
 <style scoped>
-
+.my-editor {
+  border: 1px solid #ced4da;
+  border-radius: 0.25em;;
+  min-height: 100px;
+}
 </style>

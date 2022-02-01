@@ -80,7 +80,7 @@ function findItem(value) {
 <template>
     <div class="form-group">
         <label :for="id">{{ label }}</label>
-        <select class="form-control custom-select" :value="selectedItem.value" @change="onChange" :readonly="readonly" :disabled="disabled" v-bind:class="{ 'is-valid': state === true, 'is-invalid': state === false }" :id="id" ref="field">
+        <select class="form-select custom-select" :value="selectedItem.value" @change="onChange" :readonly="readonly" :disabled="disabled" v-bind:class="{ 'is-valid': state === true, 'is-invalid': state === false }" :id="id" ref="field">
             <option v-for="item in items" :key="item.value" :value="item.value">{{ item.label }}</option>
         </select>
         <div class="invalid-tooltip">

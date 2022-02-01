@@ -12,7 +12,7 @@
                 <router-link :to="{ name: 'post' }" custom v-slot="{ href, route, navigate }">
                     <a class="navbar-brand" :href="href" @click="navigate">Pastebin</a>
                 </router-link> 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">

@@ -36,4 +36,4 @@ jobs:
         PORT: ${{ secrets.SSH_PORT }}
         USER: ${{ secrets.SSH_USER }}
     - name: Deploy application
-      run: cat release.zip | ssh production /root/deploy -c pastebin -i -
+      run: cat release.zip | ssh production deploy pastebin
